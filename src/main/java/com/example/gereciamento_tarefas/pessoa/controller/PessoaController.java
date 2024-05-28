@@ -5,10 +5,7 @@ import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -20,5 +17,10 @@ public class PessoaController {
     @PostMapping
     public PessoaResponse save(@RequestBody PessoaRequest request) {
         return pessoaService.save(request);
+    }
+
+    @PutMapping("/{id}")
+    public PessoaResponse edit(@PathVariable Integer id, @RequestBody PessoaRequest request) {
+        return pessoaService.edit(id, request);
     }
 }
