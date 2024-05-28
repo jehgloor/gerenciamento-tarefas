@@ -1,6 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.controller;
 
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
+import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class PessoaController {
     PessoaService pessoaService;
 
     @PostMapping
-    public Pessoa save(@RequestBody PessoaRequest request) {
+    public PessoaResponse save(@RequestBody PessoaRequest request) {
         return pessoaService.save(request);
     }
 }
