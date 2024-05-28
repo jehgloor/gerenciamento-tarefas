@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Duration;
 import java.util.Date;
 
 @Data
@@ -36,10 +35,11 @@ public class Tarefa {
     private Date prazo;
 
     @Column(name = "DEPARTAMENTO")
+    @Enumerated(EnumType.STRING)
     private EDepartamento departamento;
 
     @Column(name = "DURACAO")
-    private Duration duracao;
+    private Integer duracao;
 
     @Column(name = "FINALIZADO")
     private Boolean finalizado;

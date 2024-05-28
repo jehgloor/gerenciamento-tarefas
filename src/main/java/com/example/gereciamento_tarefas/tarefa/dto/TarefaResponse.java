@@ -4,7 +4,6 @@ import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.Duration;
 import java.util.Date;
 
 @Data
@@ -15,17 +14,17 @@ public class TarefaResponse {
     private String descricao;
     private Date prazo;
     private String departamento;
-    private String duracao;
+    private Integer duracao;
     private Integer pessoaId;
 
     public static TarefaResponse convertFrom(Tarefa tarefa) {
-       return TarefaResponse.builder()
-               .titulo(tarefa.getTitulo())
-               .descricao(tarefa.getDescricao())
-               .prazo(tarefa.getPrazo())
-               .departamento(tarefa.getDepartamento().getDescricao())
-               .duracao(tarefa.getDuracao().toString())
-               .pessoaId(tarefa.getPessoa() != null ? tarefa.getPessoa().getId() : null)
-               .build();
+        return TarefaResponse.builder()
+                .titulo(tarefa.getTitulo())
+                .descricao(tarefa.getDescricao())
+                .prazo(tarefa.getPrazo())
+                .departamento(tarefa.getDepartamento().getDescricao())
+                .duracao(tarefa.getDuracao())
+                .pessoaId(tarefa.getPessoa() != null ? tarefa.getPessoa().getId() : null)
+                .build();
     }
 }

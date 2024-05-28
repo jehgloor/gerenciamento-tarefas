@@ -4,7 +4,6 @@ import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.Duration;
 import java.util.Date;
 
 @Data
@@ -15,5 +14,5 @@ public class TarefaRequest {
     private String descricao;
     private Date prazo;
     private EDepartamento departamento;
-    private Duration duracao;
+    private Integer duracao;
 }

@@ -1,13 +1,16 @@
 package com.example.gereciamento_tarefas.pessoa.controller;
 
+import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/pessoa")
+@RequestMapping("/pessoas")
 public class PessoaController {
 
     @Autowired
@@ -27,4 +30,10 @@ public class PessoaController {
     public void delete(@PathVariable Integer id) {
         pessoaService.delete(id);
     }
+
+    @GetMapping
+    public List<PessoaDepartamentoInterface> getAll() {
+        return pessoaService.getAll();
+    }
+
 }
