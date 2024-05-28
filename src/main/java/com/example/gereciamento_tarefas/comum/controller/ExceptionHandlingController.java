@@ -1,6 +1,7 @@
 package com.example.gereciamento_tarefas.comum.controller;
 
 import com.example.gereciamento_tarefas.comum.exception.NotFoundException;
+import com.example.gereciamento_tarefas.comum.exception.ValidacaoException;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,6 +20,13 @@ public class ExceptionHandlingController {
     @ResponseBody
     public List<Message> notFoundError(NotFoundException ex) {
         return Collections.singletonList(new Message(ex.getMessage()));
+    }
+
+    @ExceptionHandler(ValidacaoException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Message validacaoErrors(ValidacaoException ex) {
+        return new Message(ex.getMessage());
     }
 
     @Data

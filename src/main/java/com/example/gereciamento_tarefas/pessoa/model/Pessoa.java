@@ -2,11 +2,14 @@ package com.example.gereciamento_tarefas.pessoa.model;
 
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
+import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -27,6 +30,9 @@ public class Pessoa {
     @Column(name = "DEPARTAMENTO")
     @Enumerated(EnumType.STRING)
     private EDepartamento departamento;
+
+    @OneToMany(mappedBy = "pessoa")
+    private List<Tarefa> tarefas;
 
     public static Pessoa convertFrom(PessoaRequest request) {
         return Pessoa.builder()

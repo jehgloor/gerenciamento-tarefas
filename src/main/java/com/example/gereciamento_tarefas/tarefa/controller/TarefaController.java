@@ -1,18 +1,13 @@
 package com.example.gereciamento_tarefas.tarefa.controller;
 
-import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
-import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaResponse;
 import com.example.gereciamento_tarefas.tarefa.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tarefa")
+@RequestMapping("/tarefas")
 public class TarefaController {
 
     @Autowired
@@ -21,5 +16,10 @@ public class TarefaController {
     @PostMapping
     public TarefaResponse save(@RequestBody TarefaRequest request) {
         return tarefaService.save(request);
+    }
+
+    @PutMapping("/finalizar/{id}")
+    public TarefaResponse finalizarTarefa(@PathVariable Integer id) {
+        return tarefaService.finalizarTarefa(id);
     }
 }
