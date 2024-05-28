@@ -2,7 +2,6 @@ package com.example.gereciamento_tarefas.pessoa.controller;
 
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
-import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,6 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-       pessoaService.delete(id);
+        pessoaService.delete(id);
     }
 }
