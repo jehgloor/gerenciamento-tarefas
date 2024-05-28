@@ -14,7 +14,7 @@ public class PessoaResponse {
     public static PessoaResponse convertFrom(Pessoa pessoa) {
         return PessoaResponse.builder()
                 .nome(pessoa.getNome())
-                .departamento(pessoa.getDepartamento().getDescricao())
+                .departamento(pessoa.getDepartamento() != null ? pessoa.getDepartamento().getDescricao() : null)
                 .build();
     }
 }

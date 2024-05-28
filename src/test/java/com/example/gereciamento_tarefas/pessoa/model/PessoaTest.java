@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PessoaTest {
 
     @Test
-    public void of_deveRetornarPessoa_quandoSolicitado() {
+    public void convertFrom_deveRetornarPessoa_quandoSolicitado() {
         assertThat(Pessoa.convertFrom(umaPessoaRequest()))
                 .extracting("nome", "departamento")
                 .containsExactly("Maria Aparecida", COMERCIAL);
