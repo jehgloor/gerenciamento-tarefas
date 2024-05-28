@@ -6,6 +6,7 @@ import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,12 @@ public class PessoaController {
     PessoaService pessoaService;
 
     @PostMapping
-    public PessoaResponse save(@RequestBody PessoaRequest request) {
+    public PessoaResponse save(@Validated @RequestBody PessoaRequest request) {
         return pessoaService.save(request);
     }
 
     @PutMapping("/{id}")
-    public PessoaResponse edit(@PathVariable Integer id, @RequestBody PessoaRequest request) {
+    public PessoaResponse edit(@PathVariable Integer id, @Validated @RequestBody PessoaRequest request) {
         return pessoaService.edit(id, request);
     }
 
@@ -38,7 +39,7 @@ public class PessoaController {
     }
 
     @GetMapping("/gastos")
-    public Double gastos(@RequestBody BuscaPessoaPorNomeEPeriodoRequest request) {
+    public Double gastos(@Validated @RequestBody BuscaPessoaPorNomeEPeriodoRequest request) {
         return pessoaService.mediaGasto(request);
     }
 }

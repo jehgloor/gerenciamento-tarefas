@@ -5,6 +5,7 @@ import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaResponse;
 import com.example.gereciamento_tarefas.tarefa.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,7 @@ public class TarefaController {
     TarefaService tarefaService;
 
     @PostMapping
-    public TarefaResponse save(@RequestBody TarefaRequest request) {
+    public TarefaResponse save(@Validated @RequestBody TarefaRequest request) {
         return tarefaService.save(request);
     }
 
