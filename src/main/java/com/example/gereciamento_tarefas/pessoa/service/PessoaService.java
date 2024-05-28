@@ -1,6 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.service;
 
 import com.example.gereciamento_tarefas.comum.exception.NotFoundException;
+import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
@@ -46,5 +47,11 @@ public class PessoaService {
 
     public List<PessoaDepartamentoInterface> getAll() {
         return pessoaRepository.findPessoasComTotalHorasGastas();
+    }
+
+    public Double mediaGasto(BuscaPessoaPorNomeEPeriodoRequest request) {
+
+        return pessoaRepository.findMediaHorasGastasPorTarefa(
+                request.getNome(), request.getDataInicio(), request.getDataFim());
     }
 }

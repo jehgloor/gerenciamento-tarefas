@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -15,4 +16,10 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
             "FROM Tarefa t JOIN Pessoa p on p.id = t.pessoa_id " +
             "GROUP BY p.id, t.departamento", nativeQuery = true)
     List<PessoaDepartamentoInterface> findPessoasComTotalHorasGastas();
+
+    @Query("SELECT AVG(t.duracao) " +
+            "FROM Pessoa p JOIN p.tarefas t " +
+            "WHERE p.nome = :nome " +
+            "AND t.prazo BETWEEN :dataInicio AND :dataFim")
+    Double findMediaHorasGastasPorTarefa(String nome, Date dataInicio, Date dataFim);
 }

@@ -1,5 +1,6 @@
 package com.example.gereciamento_tarefas.pessoa.controller;
 
+import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
@@ -36,4 +37,8 @@ public class PessoaController {
         return pessoaService.getAll();
     }
 
+    @GetMapping("/gastos")
+    public Double gastos(@RequestBody BuscaPessoaPorNomeEPeriodoRequest request) {
+        return pessoaService.mediaGasto(request);
+    }
 }
