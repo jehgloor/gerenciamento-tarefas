@@ -16,6 +16,7 @@ public class TarefaResponse {
     private Date prazo;
     private String departamento;
     private String duracao;
+    private Integer pessoaId;
 
     public static TarefaResponse convertFrom(Tarefa tarefa) {
        return TarefaResponse.builder()
@@ -24,6 +25,7 @@ public class TarefaResponse {
                .prazo(tarefa.getPrazo())
                .departamento(tarefa.getDepartamento().getDescricao())
                .duracao(tarefa.getDuracao().toString())
+               .pessoaId(tarefa.getPessoa() != null ? tarefa.getPessoa().getId() : null)
                .build();
     }
 }

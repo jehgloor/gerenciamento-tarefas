@@ -1,5 +1,6 @@
 package com.example.gereciamento_tarefas.tarefa.controller;
 
+import com.example.gereciamento_tarefas.tarefa.dto.TarefaAlocarPessoaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaResponse;
 import com.example.gereciamento_tarefas.tarefa.service.TarefaService;
@@ -16,6 +17,11 @@ public class TarefaController {
     @PostMapping
     public TarefaResponse save(@RequestBody TarefaRequest request) {
         return tarefaService.save(request);
+    }
+
+    @PutMapping("/alocar/{id}")
+    public TarefaResponse alocarPessoaNaTarefa(@PathVariable Integer id, @RequestBody TarefaAlocarPessoaRequest request) {
+        return tarefaService.alocarPessoaNaTarefa(id, request);
     }
 
     @PutMapping("/finalizar/{id}")

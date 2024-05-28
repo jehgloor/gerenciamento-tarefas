@@ -35,7 +35,7 @@ public class PessoaService {
         pessoaRepository.delete(pessoa);
     }
 
-    private Pessoa findById(Integer id) {
+    public Pessoa findById(Integer id) {
         return pessoaRepository.findById(id).orElseThrow(() ->
                 new NotFoundException("A Pessoa não foi encontrado."));
     }
