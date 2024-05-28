@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -32,7 +32,7 @@ public class Tarefa {
     private String descricao;
 
     @Column(name = "PRAZO")
-    private Date prazo;
+    private LocalDate prazo;
 
     @Column(name = "DEPARTAMENTO")
     @Enumerated(EnumType.STRING)

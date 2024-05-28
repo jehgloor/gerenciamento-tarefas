@@ -2,7 +2,6 @@ package com.example.gereciamento_tarefas.pessoa.dto;
 
 import org.junit.jupiter.api.Test;
 
-import static com.example.gereciamento_tarefas.departamento.enums.EDepartamento.COMERCIAL;
 import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoa;
 import static org.assertj.core.api.Assertions.assertThat;
 
