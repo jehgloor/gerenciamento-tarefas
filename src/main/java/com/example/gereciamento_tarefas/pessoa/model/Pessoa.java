@@ -1,5 +1,6 @@
 package com.example.gereciamento_tarefas.pessoa.model;
 
+import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,4 +28,10 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     private EDepartamento departamento;
 
+    public static Pessoa convertFrom(PessoaRequest request) {
+        return Pessoa.builder()
+                .nome(request.getNome())
+                .departamento(request.getDepartamento())
+                .build();
+    }
 }
