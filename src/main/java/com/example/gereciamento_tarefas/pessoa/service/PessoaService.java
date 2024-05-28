@@ -29,6 +29,12 @@ public class PessoaService {
         return PessoaResponse.convertFrom(pessoa);
     }
 
+    public void delete(Integer id) {
+        var pessoa = findById(id);
+
+        pessoaRepository.delete(pessoa);
+    }
+
     private Pessoa findById(Integer id) {
         return pessoaRepository.findById(id).orElseThrow(() ->
                 new NotFoundException("A Pessoa não foi encontrado."));

@@ -23,4 +23,9 @@ public class PessoaController {
     public PessoaResponse edit(@PathVariable Integer id, @RequestBody PessoaRequest request) {
         return pessoaService.edit(id, request);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+       pessoaService.delete(id);
+    }
 }
