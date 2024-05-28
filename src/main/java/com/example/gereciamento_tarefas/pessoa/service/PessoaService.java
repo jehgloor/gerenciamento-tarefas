@@ -44,13 +44,11 @@ public class PessoaService {
                 new NotFoundException("A Pessoa não foi encontrado."));
     }
 
-
     public List<PessoaDepartamentoInterface> getAll() {
         return pessoaRepository.findPessoasComTotalHorasGastas();
     }
 
     public Double mediaGasto(BuscaPessoaPorNomeEPeriodoRequest request) {
-
         return pessoaRepository.findMediaHorasGastasPorTarefa(
                 request.getNome(), request.getDataInicio(), request.getDataFim());
     }

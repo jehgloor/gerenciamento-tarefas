@@ -6,6 +6,8 @@ import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 
 import java.time.LocalDate;
 
+import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoa;
+
 public class TarefaHelper {
 
     private static final LocalDate prazo = LocalDate.of(2024, 05, 29);
@@ -30,6 +32,15 @@ public class TarefaHelper {
                 .finalizado(Boolean.FALSE)
                 .titulo("Ligar para os clientes")
                 .descricao("afim de aumentar as vendas, é solicitado entrar em contato com os clientes")
+                .build();
+    }
+
+    public static Tarefa umaTarefaParaCalcularMediaDuracao(Integer duracao) {
+        return Tarefa.builder()
+                .id(1)
+                .duracao(duracao)
+                .prazo(LocalDate.of(2024, 05, 25))
+                .pessoa(umaPessoa(1))
                 .build();
     }
 }

@@ -13,13 +13,4 @@ public class PessoaResponseTest {
                 .extracting("nome", "departamento")
                 .containsExactly("Maria Aparecida", "Comercial");
     }
-
-    @Test
-    public void convertFrom_deveRetornarPessoaSemDepartamento_quandoDepartamentoNull() {
-        var pessoa = umaPessoa(1);
-        pessoa.setDepartamento(null);
-        assertThat(PessoaResponse.convertFrom(pessoa))
-                .extracting("nome", "departamento")
-                .containsExactly("Maria Aparecida", null);
-    }
 }

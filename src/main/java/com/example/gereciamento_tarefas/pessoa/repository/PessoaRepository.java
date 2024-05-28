@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -22,7 +22,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
             "FROM Pessoa p JOIN p.tarefas t " +
             "WHERE p.nome = :nome " +
             "AND t.prazo BETWEEN :dataInicio AND :dataFim")
-    Double findMediaHorasGastasPorTarefa(String nome, Date dataInicio, Date dataFim);
+    Double findMediaHorasGastasPorTarefa(String nome, LocalDate dataInicio, LocalDate dataFim);
 
     int countByDepartamento(EDepartamento departamento);
 }

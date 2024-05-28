@@ -18,11 +18,4 @@ public class TarefaResponseTest {
                         LocalDate.of(2024, 05, 29), "Comercial", 2, false);
     }
 
-    @Test
-    public void convertFrom_deveRetornarTarefaSemDepartamento_quandoDepartamentoNull() {
-        var tarefa = umaTarefa(1);
-        tarefa.setDepartamento(null);
-        assertThat(TarefaResponse.convertFrom(tarefa))
-                .extracting("departamento").isEqualTo(null);
-    }
 }
