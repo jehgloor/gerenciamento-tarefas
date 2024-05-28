@@ -1,6 +1,6 @@
 package com.example.gereciamento_tarefas.tarefa.model;
 
-import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
+import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;

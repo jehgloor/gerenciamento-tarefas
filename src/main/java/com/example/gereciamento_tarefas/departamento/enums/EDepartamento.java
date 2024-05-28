@@ -1,4 +1,4 @@
-package com.example.gereciamento_tarefas.pessoa.enums;
+package com.example.gereciamento_tarefas.departamento.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

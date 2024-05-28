@@ -1,7 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.model;
 
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
-import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
+import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

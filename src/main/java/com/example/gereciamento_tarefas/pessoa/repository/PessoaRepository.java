@@ -1,5 +1,6 @@
 package com.example.gereciamento_tarefas.pessoa.repository;
 
+import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,4 +23,6 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
             "WHERE p.nome = :nome " +
             "AND t.prazo BETWEEN :dataInicio AND :dataFim")
     Double findMediaHorasGastasPorTarefa(String nome, Date dataInicio, Date dataFim);
+
+    int countByDepartamento(EDepartamento departamento);
 }

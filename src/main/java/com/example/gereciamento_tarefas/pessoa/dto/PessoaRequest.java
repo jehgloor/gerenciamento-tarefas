@@ -1,6 +1,6 @@
 package com.example.gereciamento_tarefas.pessoa.dto;
 
-import com.example.gereciamento_tarefas.pessoa.enums.EDepartamento;
+import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import lombok.Builder;
 import lombok.Data;
 
