@@ -1,6 +1,5 @@
 package com.example.gereciamento_tarefas.tarefa.dto;
 
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

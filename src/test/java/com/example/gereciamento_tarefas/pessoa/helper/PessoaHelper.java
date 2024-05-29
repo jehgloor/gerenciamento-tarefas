@@ -1,6 +1,5 @@
 package com.example.gereciamento_tarefas.pessoa.helper;
 
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
@@ -29,7 +28,7 @@ public class PessoaHelper {
 
     public static PessoaResponse umaPessoaResponse() {
         return PessoaResponse.builder()
-                .tituloDepartamento(EDepartamento.COMERCIAL.getDescricao())
+                .tituloDepartamento("Comercial")
                 .nome("Maria Aparecida")
                 .build();
     }

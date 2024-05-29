@@ -1,6 +1,5 @@
 package com.example.gereciamento_tarefas.tarefa.helper;
 
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaAlocarPessoaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaResponse;
@@ -39,7 +38,7 @@ public class TarefaHelper {
 
     public static TarefaResponse umaTarefaResponse() {
         return TarefaResponse.builder()
-                .tituloDepartamento(EDepartamento.COMERCIAL.getDescricao())
+                .tituloDepartamento("Comercial")
                 .prazo(prazo)
                 .duracao(2)
                 .finalizado(Boolean.FALSE)

@@ -1,6 +1,5 @@
 package com.example.gereciamento_tarefas.pessoa.repository;
 
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("test")
 @DataJpaTest
-@Sql(scripts = {"classpath:/pessoa.sql", "classpath:/tarefa.sql"})
+@Sql(scripts = {"classpath:/pessoa.sql"})
 public class PessoaRepositoryTest {
 
     @Autowired
@@ -24,9 +23,8 @@ public class PessoaRepositoryTest {
     public void findPessoasComTotalHorasGastas_deveRetornarPessoasComHorasGastas() {
         assertThat(repository.findPessoasComTotalHorasGastas())
                 .extracting("nome", "departamento", "duracao")
-                .containsExactly(Tuple.tuple("Maria Aparecida", null, 45L),
-                        Tuple.tuple("Gustavo Lima", null, 30L));
-
+                .containsExactly(Tuple.tuple("Maria Aparecida", "Finaceiro", 45L),
+                        Tuple.tuple("Gustavo Lima", "Administrativo", 30L));
     }
 
     @Test

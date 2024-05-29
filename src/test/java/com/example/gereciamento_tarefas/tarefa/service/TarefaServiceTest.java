@@ -14,13 +14,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.gereciamento_tarefas.departamento.helper.DepartamentoHelper.umDepartamento;
 import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoa;
 import static com.example.gereciamento_tarefas.tarefa.helper.TarefaHelper.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -128,5 +128,18 @@ public class TarefaServiceTest {
         assertThatThrownBy(() -> tarefaService.alocarPessoaNaTarefa(1, umaTarefaAlocarPessoaRequest()))
                 .isInstanceOf(ValidacaoException.class)
                 .hasMessage("A tarefa e a pessoa devem ser do mesmo departamento.");
+    }
+
+    @Test
+    public void pendentes_deveRetornarListaTarefaResponse_quandoSolicitado() {
+        when(tarefaRepository.pendentes(3)).thenReturn(List.of(umaTarefa(4), umaTarefa(5), umaTarefa(6)));
+        assertThat(tarefaService.pendentes())
+                .extracting("titulo", "descricao", "prazo", "tituloDepartamento", "duracao", "finalizado")
+                .containsExactly(tuple("LIGAR PARA OS CLIENTES", "Entre em contato com nossos clientes",
+                        LocalDate.of(2024, 05, 29), "Financeiro", 2, false),
+                        tuple("LIGAR PARA OS CLIENTES", "Entre em contato com nossos clientes",
+                                LocalDate.of(2024, 05, 29), "Financeiro", 2, false),
+                        tuple("LIGAR PARA OS CLIENTES", "Entre em contato com nossos clientes",
+                                LocalDate.of(2024, 05, 29), "Financeiro", 2, false));
     }
 }

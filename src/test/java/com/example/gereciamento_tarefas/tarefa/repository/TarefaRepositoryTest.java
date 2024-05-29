@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("test")
 @DataJpaTest
-@Sql(scripts = {"classpath:/pessoa.sql", "classpath:/tarefa.sql"})
+@Sql(scripts = {"classpath:/pessoa.sql"})
 public class TarefaRepositoryTest {
 
     @Autowired
