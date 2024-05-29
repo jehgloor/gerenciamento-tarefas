@@ -58,4 +58,8 @@ public class Tarefa {
                 .finalizado(Boolean.FALSE)
                 .build();
     }
+
+    public boolean isFinalizado() {
+        return this.getFinalizado() == Boolean.TRUE ? true : false;
+    }
 }

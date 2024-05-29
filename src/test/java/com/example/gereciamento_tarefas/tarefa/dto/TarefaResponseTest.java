@@ -13,8 +13,7 @@ public class TarefaResponseTest {
     public void convertFrom_deveRetornarTarefa_quandoSolicitado() {
         assertThat(TarefaResponse.convertFrom(umaTarefa(1)))
                 .extracting("titulo", "descricao", "prazo", "departamento", "duracao", "finalizado")
-                .containsExactly("Ligar para os clientes",
-                        "afim de aumentar as vendas, é solicitado entrar em contato com os clientes",
+                .containsExactly("LIGAR PARA OS CLIENTES", "Entre em contato com nossos clientes",
                         LocalDate.of(2024, 05, 29), "Comercial", 2, false);
     }
 

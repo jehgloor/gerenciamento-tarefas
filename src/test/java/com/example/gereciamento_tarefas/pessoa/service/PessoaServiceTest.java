@@ -64,8 +64,6 @@ public class PessoaServiceTest {
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("A Pessoa não foi encontrado.");
 
-        verify(repository).findById(1);
-
         verify(repository, never()).save(any(Pessoa.class));
         verify(repository).findById(1);
     }
