@@ -6,6 +6,7 @@ import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class PessoaController {
     PessoaService pessoaService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponse save(@Validated @RequestBody PessoaRequest request) {
         return pessoaService.save(request);
     }
@@ -28,6 +30,7 @@ public class PessoaController {
         return pessoaService.edit(id, request);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         pessoaService.delete(id);

@@ -3,6 +3,7 @@ package com.example.gereciamento_tarefas.pessoa.helper;
 import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
+import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 
 import java.time.LocalDate;
@@ -20,6 +21,13 @@ public class PessoaHelper {
         return Pessoa.builder()
                 .id(id)
                 .departamento(EDepartamento.COMERCIAL)
+                .nome("Maria Aparecida")
+                .build();
+    }
+
+    public static PessoaResponse umaPessoaResponse() {
+        return PessoaResponse.builder()
+                .departamento(EDepartamento.COMERCIAL.getDescricao())
                 .nome("Maria Aparecida")
                 .build();
     }
