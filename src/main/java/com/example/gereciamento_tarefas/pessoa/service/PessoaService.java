@@ -1,6 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.service;
 
 import com.example.gereciamento_tarefas.comum.exception.NotFoundException;
+import com.example.gereciamento_tarefas.departamento.service.DepartamentoService;
 import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
@@ -18,15 +19,19 @@ public class PessoaService {
     @Autowired
     PessoaRepository pessoaRepository;
 
+    @Autowired
+    DepartamentoService departamentoService;
+
     public PessoaResponse save(PessoaRequest request) {
-        var pessoa = pessoaRepository.save(Pessoa.convertFrom(request));
+        var departamento = departamentoService.findById(request.getIdDepartamento());
+        var pessoa = pessoaRepository.save(Pessoa.convertFrom(request, departamento));
         return PessoaResponse.convertFrom(pessoa);
     }
 
     public PessoaResponse edit(Integer id, PessoaRequest request) {
         var pessoa = findById(id);
         pessoa.setNome(request.getNome());
-        pessoa.setDepartamento(request.getDepartamento());
+        pessoa.setDepartamento(departamentoService.findById(request.getIdDepartamento()));
 
         pessoaRepository.save(pessoa);
 

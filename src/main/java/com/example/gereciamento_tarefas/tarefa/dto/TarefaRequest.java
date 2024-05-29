@@ -18,7 +18,7 @@ public class TarefaRequest {
     @NotNull
     private LocalDate prazo;
     @NotNull
-    private EDepartamento departamento;
-    @NotNull
     private Integer duracao;
+    @NotNull
+    private Integer idDepartamento;
 }

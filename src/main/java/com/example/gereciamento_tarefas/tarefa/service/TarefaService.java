@@ -2,6 +2,7 @@ package com.example.gereciamento_tarefas.tarefa.service;
 
 import com.example.gereciamento_tarefas.comum.exception.NotFoundException;
 import com.example.gereciamento_tarefas.comum.exception.ValidacaoException;
+import com.example.gereciamento_tarefas.departamento.service.DepartamentoService;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaAlocarPessoaRequest;
@@ -19,13 +20,15 @@ import java.util.List;
 public class TarefaService {
 
     @Autowired
+    DepartamentoService departamentoService;
+    @Autowired
     private TarefaRepository tarefaRepository;
-
     @Autowired
     private PessoaService pessoaService;
 
     public TarefaResponse save(TarefaRequest request) {
-        var tarefa = tarefaRepository.save(Tarefa.convertFrom(request));
+        var departamento = departamentoService.findById(request.getIdDepartamento());
+        var tarefa = tarefaRepository.save(Tarefa.convertFrom(request, departamento));
         return TarefaResponse.convertFrom(tarefa);
 
     }

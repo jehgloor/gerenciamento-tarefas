@@ -23,7 +23,7 @@ public class TarefaResponse {
                 .titulo(tarefa.getTitulo())
                 .descricao(tarefa.getDescricao())
                 .prazo(tarefa.getPrazo())
-                .departamento(tarefa.getDepartamento().getDescricao())
+                .departamento(tarefa.getDepartamento().getTitulo())
                 .duracao(tarefa.getDuracao())
                 .finalizado(tarefa.getFinalizado())
                 .pessoaId(tarefa.getPessoa() != null ? tarefa.getPessoa().getId() : null)

@@ -1,6 +1,6 @@
 package com.example.gereciamento_tarefas.tarefa.model;
 
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
+import com.example.gereciamento_tarefas.departamento.model.Departamento;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,26 +34,26 @@ public class Tarefa {
     @Column(name = "PRAZO")
     private LocalDate prazo;
 
-    @Column(name = "DEPARTAMENTO")
-    @Enumerated(EnumType.STRING)
-    private EDepartamento departamento;
-
     @Column(name = "DURACAO")
     private Integer duracao;
 
     @Column(name = "FINALIZADO")
     private Boolean finalizado;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_DEPARTAMENTO")
+    private Departamento departamento;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Pessoa pessoa;
 
-    public static Tarefa convertFrom(TarefaRequest request) {
+    public static Tarefa convertFrom(TarefaRequest request, Departamento departamento) {
         return Tarefa.builder()
                 .titulo(request.getTitulo())
                 .descricao(request.getDescricao())
                 .prazo(request.getPrazo())
-                .departamento(request.getDepartamento())
+                .departamento(departamento)
                 .duracao(request.getDuracao())
                 .finalizado(Boolean.FALSE)
                 .build();

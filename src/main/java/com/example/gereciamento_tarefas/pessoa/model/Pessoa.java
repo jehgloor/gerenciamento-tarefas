@@ -1,7 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.model;
 
+import com.example.gereciamento_tarefas.departamento.model.Departamento;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,17 +27,17 @@ public class Pessoa {
     @Column(name = "NOME")
     private String nome;
 
-    @Column(name = "DEPARTAMENTO")
-    @Enumerated(EnumType.STRING)
-    private EDepartamento departamento;
+    @ManyToOne
+    @JoinColumn(name = "ID_DEPARTAMENTO")
+    private Departamento departamento;
 
     @OneToMany(mappedBy = "pessoa")
     private List<Tarefa> tarefas;
 
-    public static Pessoa convertFrom(PessoaRequest request) {
+    public static Pessoa convertFrom(PessoaRequest request, Departamento departamento) {
         return Pessoa.builder()
                 .nome(request.getNome())
-                .departamento(request.getDepartamento())
+                .departamento(departamento)
                 .build();
     }
 }
