@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TarefaService {
 
@@ -63,5 +65,10 @@ public class TarefaService {
         if (pessoa.getDepartamento() != tarefa.getDepartamento()) {
             throw new ValidacaoException("A tarefa e a pessoa devem ser do mesmo departamento.");
         }
+    }
+
+    public List<TarefaResponse> pendentes() {
+        var tarefas = tarefaRepository.pendentes(3);
+        return tarefas.stream().map(TarefaResponse::convertFrom).toList();
     }
 }

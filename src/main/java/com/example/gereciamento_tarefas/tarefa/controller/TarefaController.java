@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
@@ -30,5 +32,10 @@ public class TarefaController {
     @PutMapping("/finalizar/{id}")
     public TarefaResponse finalizarTarefa(@PathVariable Integer id) {
         return tarefaService.finalizarTarefa(id);
+    }
+
+    @GetMapping("/pendentes")
+    public List<TarefaResponse> pendentes() {
+        return tarefaService.pendentes();
     }
 }
