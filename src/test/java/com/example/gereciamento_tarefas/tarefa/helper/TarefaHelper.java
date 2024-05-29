@@ -3,6 +3,7 @@ package com.example.gereciamento_tarefas.tarefa.helper;
 import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaAlocarPessoaRequest;
 import com.example.gereciamento_tarefas.tarefa.dto.TarefaRequest;
+import com.example.gereciamento_tarefas.tarefa.dto.TarefaResponse;
 import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 
 import java.time.LocalDate;
@@ -27,6 +28,17 @@ public class TarefaHelper {
         return Tarefa.builder()
                 .id(id)
                 .departamento(EDepartamento.COMERCIAL)
+                .prazo(prazo)
+                .duracao(2)
+                .finalizado(Boolean.FALSE)
+                .titulo("LIGAR PARA OS CLIENTES")
+                .descricao("Entre em contato com nossos clientes")
+                .build();
+    }
+
+    public static TarefaResponse umaTarefaResponse() {
+        return TarefaResponse.builder()
+                .departamento(EDepartamento.COMERCIAL.getDescricao())
                 .prazo(prazo)
                 .duracao(2)
                 .finalizado(Boolean.FALSE)

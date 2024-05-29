@@ -81,7 +81,24 @@ public class PessoaControllerTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void edit_deveRetornar200_seRequestPassadoCorretamente() throws Exception {
+        var request = umaPessoaRequest();
+        var response = umaPessoaResponse();
+
+        when(pessoaService.edit(1, request)).thenReturn(response);
+
+        mvc.perform(MockMvcRequestBuilders.put(BASE_URL + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(convertObjectToJsonBytes(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome", is("Maria Aparecida")))
+                .andExpect(jsonPath("$.departamento", is("Comercial")));
+
+        verify(pessoaService).edit(1, request);
+    }
+
+    @Test
+    public void delete_deveRetornar204_quandoSolicitado() throws Exception {
         doNothing().when(pessoaService).delete(1);
 
         mvc.perform(delete(BASE_URL + "/1"))
