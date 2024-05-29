@@ -2,7 +2,7 @@ package com.example.gereciamento_tarefas.tarefa.service;
 
 import com.example.gereciamento_tarefas.comum.exception.NotFoundException;
 import com.example.gereciamento_tarefas.comum.exception.ValidacaoException;
-import com.example.gereciamento_tarefas.departamento.enums.EDepartamento;
+import com.example.gereciamento_tarefas.departamento.service.DepartamentoService;
 import com.example.gereciamento_tarefas.pessoa.repository.PessoaRepository;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static com.example.gereciamento_tarefas.departamento.helper.DepartamentoHelper.umDepartamento;
 import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoa;
 import static com.example.gereciamento_tarefas.tarefa.helper.TarefaHelper.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,15 +36,18 @@ public class TarefaServiceTest {
     private TarefaRepository tarefaRepository;
     @Mock
     private PessoaService pessoaService;
+    @Mock
+    private DepartamentoService departamentoService;
 
     @Test
     public void save_deveSalvarTarefa_quandoRequestPassadoCertos() {
         when(tarefaRepository.save(any(Tarefa.class))).thenReturn(umaTarefa(1));
+        when(departamentoService.findById(1)).thenReturn(umDepartamento(1, "Financeiro"));
 
         assertThat(tarefaService.save(umaTarefaRequest()))
-                .extracting("titulo", "descricao", "prazo", "departamento", "duracao", "finalizado")
+                .extracting("titulo", "descricao", "prazo", "tituloDepartamento", "duracao", "finalizado")
                 .containsExactly("LIGAR PARA OS CLIENTES", "Entre em contato com nossos clientes",
-                        LocalDate.of(2024, 05, 29), "Comercial", 2, false);
+                        LocalDate.of(2024, 05, 29), "Financeiro", 2, false);
 
         verify(tarefaRepository).save(any(Tarefa.class));
     }
@@ -88,12 +92,16 @@ public class TarefaServiceTest {
 
     @Test
     public void alocarPessoaNaTarefa_deveAlocarPessoaNaTarefa_seIdPessoaEIdTarefaEncontrado() {
+        var dpto = umDepartamento(1, "Financeiro");
         var tarefa = umaTarefa(1);
+        tarefa.setDepartamento(dpto);
         var pessoa = umaPessoa(1);
+        pessoa.setDepartamento(dpto);
         when(pessoaService.findById(1)).thenReturn(pessoa);
         when(tarefaRepository.findById(1)).thenReturn(Optional.ofNullable(tarefa));
 
         assertThat(tarefa.getPessoa()).isEqualTo(null);
+
         tarefaService.alocarPessoaNaTarefa(1, umaTarefaAlocarPessoaRequest());
 
         assertThat(tarefa.getPessoa()).isEqualTo(pessoa);
@@ -112,9 +120,9 @@ public class TarefaServiceTest {
     @Test
     public void alocarPessoaNaTarefa_deveRetornarException_seTarefaEPessoaNaoPossuirOMesmoDepartamento() {
         var pessoa = umaPessoa(1);
-        pessoa.setDepartamento(EDepartamento.JURIDICO);
+        pessoa.setDepartamento(umDepartamento(1, "Financeiro"));
         var tarefa = umaTarefa(1);
-        tarefa.setDepartamento(EDepartamento.RECURSOS_HUMANOS);
+        tarefa.setDepartamento(umDepartamento(2, "Comercial"));
         when(pessoaService.findById(1)).thenReturn(pessoa);
         when(tarefaRepository.findById(1)).thenReturn(Optional.ofNullable(tarefa));
         assertThatThrownBy(() -> tarefaService.alocarPessoaNaTarefa(1, umaTarefaAlocarPessoaRequest()))

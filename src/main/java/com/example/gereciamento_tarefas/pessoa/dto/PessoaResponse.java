@@ -9,12 +9,12 @@ import lombok.Data;
 public class PessoaResponse {
 
     private String nome;
-    private String departamento;
+    private String tituloDepartamento;
 
     public static PessoaResponse convertFrom(Pessoa pessoa) {
         return PessoaResponse.builder()
                 .nome(pessoa.getNome())
-                .departamento(pessoa.getDepartamento().getTitulo())
+                .tituloDepartamento(pessoa.getDepartamento().getTitulo())
                 .build();
     }
 }

@@ -13,7 +13,7 @@ public class TarefaResponse {
     private String titulo;
     private String descricao;
     private LocalDate prazo;
-    private String departamento;
+    private String tituloDepartamento;
     private Integer duracao;
     private Boolean finalizado;
     private Integer pessoaId;
@@ -23,7 +23,7 @@ public class TarefaResponse {
                 .titulo(tarefa.getTitulo())
                 .descricao(tarefa.getDescricao())
                 .prazo(tarefa.getPrazo())
-                .departamento(tarefa.getDepartamento().getTitulo())
+                .tituloDepartamento(tarefa.getDepartamento().getTitulo())
                 .duracao(tarefa.getDuracao())
                 .finalizado(tarefa.getFinalizado())
                 .pessoaId(tarefa.getPessoa() != null ? tarefa.getPessoa().getId() : null)

@@ -10,7 +10,7 @@ public class PessoaResponseTest {
     @Test
     public void convertFrom_deveRetornarPessoa_quandoSolicitado() {
         assertThat(PessoaResponse.convertFrom(umaPessoa(1)))
-                .extracting("nome", "departamento")
-                .containsExactly("Maria Aparecida", "Comercial");
+                .extracting("nome", "tituloDepartamento")
+                .containsExactly("Maria Aparecida", "Financeiro");
     }
 }

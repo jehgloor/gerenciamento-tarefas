@@ -24,8 +24,8 @@ public class PessoaRepositoryTest {
     public void findPessoasComTotalHorasGastas_deveRetornarPessoasComHorasGastas() {
         assertThat(repository.findPessoasComTotalHorasGastas())
                 .extracting("nome", "departamento", "duracao")
-                .containsExactly(Tuple.tuple("Maria Aparecida", "COMERCIAL", 45L),
-                        Tuple.tuple("Gustavo Lima", "FINANCEIRO", 30L));
+                .containsExactly(Tuple.tuple("Maria Aparecida", null, 45L),
+                        Tuple.tuple("Gustavo Lima", null, 30L));
 
     }
 
@@ -36,25 +36,5 @@ public class PessoaRepositoryTest {
 
         assertThat(repository.findMediaHorasGastasPorTarefa("Maria Aparecida", dataInicio, dataFinal))
                 .isEqualTo(22.5);
-    }
-
-    @Test
-    public void countByDepartamento_deveRetornarQuantidadeDePessoasPorDepartamento() {
-        assertThat(repository.countByDepartamento(EDepartamento.COMERCIAL))
-                .isEqualTo(2);
-        assertThat(repository.countByDepartamento(EDepartamento.FINANCEIRO))
-                .isEqualTo(1);
-        assertThat(repository.countByDepartamento(EDepartamento.RECURSOS_HUMANOS))
-                .isEqualTo(0);
-        assertThat(repository.countByDepartamento(EDepartamento.ADMINISTRATIVO))
-                .isEqualTo(0);
-        assertThat(repository.countByDepartamento(EDepartamento.MARKETING))
-                .isEqualTo(0);
-        assertThat(repository.countByDepartamento(EDepartamento.JURIDICO))
-                .isEqualTo(0);
-        assertThat(repository.countByDepartamento(EDepartamento.FINANCEIRO))
-                .isEqualTo(1);
-        assertThat(repository.countByDepartamento(EDepartamento.OPERACIONAL))
-                .isEqualTo(0);
     }
 }

@@ -8,11 +8,13 @@ import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
 
 import java.time.LocalDate;
 
+import static com.example.gereciamento_tarefas.departamento.helper.DepartamentoHelper.umDepartamento;
+
 public class PessoaHelper {
 
     public static PessoaRequest umaPessoaRequest() {
         return PessoaRequest.builder()
-                .departamento(EDepartamento.COMERCIAL)
+                .idDepartamento(1)
                 .nome("Maria Aparecida")
                 .build();
     }
@@ -20,14 +22,14 @@ public class PessoaHelper {
     public static Pessoa umaPessoa(Integer id) {
         return Pessoa.builder()
                 .id(id)
-                .departamento(EDepartamento.COMERCIAL)
+                .departamento(umDepartamento(1, "Financeiro"))
                 .nome("Maria Aparecida")
                 .build();
     }
 
     public static PessoaResponse umaPessoaResponse() {
         return PessoaResponse.builder()
-                .departamento(EDepartamento.COMERCIAL.getDescricao())
+                .tituloDepartamento(EDepartamento.COMERCIAL.getDescricao())
                 .nome("Maria Aparecida")
                 .build();
     }

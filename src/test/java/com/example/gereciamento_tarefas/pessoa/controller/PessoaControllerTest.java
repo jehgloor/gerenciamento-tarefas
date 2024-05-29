@@ -55,7 +55,7 @@ public class PessoaControllerTest {
                         .content(convertObjectToJsonBytes(request)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.nome", is("Maria Aparecida")))
-                .andExpect(jsonPath("$.departamento", is("Comercial")));
+                .andExpect(jsonPath("$.tituloDepartamento", is("Comercial")));
 
         verify(pessoaService).save(request);
     }
@@ -64,7 +64,7 @@ public class PessoaControllerTest {
     public void save_deveRetornar400_seCamposObrigatoriosVazio() throws Exception {
         var request = umaPessoaRequest();
         var response = umaPessoaResponse();
-        request.setDepartamento(null);
+        request.setIdDepartamento(null);
         request.setNome(null);
 
         when(pessoaService.save(request)).thenReturn(response);
@@ -75,7 +75,7 @@ public class PessoaControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$[*].message", containsInAnyOrder(
                         "O campo nome must not be blank",
-                        "O campo departamento must not be null")));
+                        "O campo idDepartamento must not be null")));
 
         verify(pessoaService, never()).save(request);
     }
@@ -92,7 +92,7 @@ public class PessoaControllerTest {
                         .content(convertObjectToJsonBytes(request)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.nome", is("Maria Aparecida")))
-                .andExpect(jsonPath("$.departamento", is("Comercial")));
+                .andExpect(jsonPath("$.tituloDepartamento", is("Comercial")));
 
         verify(pessoaService).edit(1, request);
     }

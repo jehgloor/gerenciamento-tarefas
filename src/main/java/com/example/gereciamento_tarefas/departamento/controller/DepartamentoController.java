@@ -16,7 +16,6 @@ public class DepartamentoController {
     @Autowired
     private DepartamentoService departamentoService;
 
-
     @GetMapping
     public List<DepartamentoResponseInterface> getDepartamentos() {
         return departamentoService.getDepartamentos();

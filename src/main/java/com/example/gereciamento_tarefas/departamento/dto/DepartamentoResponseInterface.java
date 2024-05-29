@@ -4,7 +4,7 @@ public interface DepartamentoResponseInterface {
 
     String getTitulo();
 
-    String getQuantidadePessoas();
+    int getQuantidadePessoas();
 
-    Long getQuantidadeTarefas();
+    int getQuantidadeTarefas();
 }

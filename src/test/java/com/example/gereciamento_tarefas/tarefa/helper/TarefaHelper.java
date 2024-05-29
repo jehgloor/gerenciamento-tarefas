@@ -8,6 +8,7 @@ import com.example.gereciamento_tarefas.tarefa.model.Tarefa;
 
 import java.time.LocalDate;
 
+import static com.example.gereciamento_tarefas.departamento.helper.DepartamentoHelper.umDepartamento;
 import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoa;
 
 public class TarefaHelper {
@@ -16,7 +17,7 @@ public class TarefaHelper {
 
     public static TarefaRequest umaTarefaRequest() {
         return TarefaRequest.builder()
-                .departamento(EDepartamento.COMERCIAL)
+                .idDepartamento(1)
                 .prazo(prazo)
                 .duracao(2)
                 .titulo("Ligar para os clientes")
@@ -27,7 +28,7 @@ public class TarefaHelper {
     public static Tarefa umaTarefa(Integer id) {
         return Tarefa.builder()
                 .id(id)
-                .departamento(EDepartamento.COMERCIAL)
+                .departamento(umDepartamento(1, "Financeiro"))
                 .prazo(prazo)
                 .duracao(2)
                 .finalizado(Boolean.FALSE)
@@ -38,7 +39,7 @@ public class TarefaHelper {
 
     public static TarefaResponse umaTarefaResponse() {
         return TarefaResponse.builder()
-                .departamento(EDepartamento.COMERCIAL.getDescricao())
+                .tituloDepartamento(EDepartamento.COMERCIAL.getDescricao())
                 .prazo(prazo)
                 .duracao(2)
                 .finalizado(Boolean.FALSE)
