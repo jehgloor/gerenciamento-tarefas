@@ -1,6 +1,7 @@
 package com.example.gereciamento_tarefas.pessoa.helper;
 
 import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
+import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaRequest;
 import com.example.gereciamento_tarefas.pessoa.dto.PessoaResponse;
 import com.example.gereciamento_tarefas.pessoa.model.Pessoa;
@@ -41,5 +42,25 @@ public class PessoaHelper {
                 .dataInicio(dataInicio)
                 .dataFim(dataFinal)
                 .build();
+    }
+
+    public static PessoaDepartamentoInterface umaPessoaDepartamentoInterface() {
+        var pessoa = new PessoaDepartamentoInterface() {
+            @Override
+            public String getNome() {
+                return "Maria Aperecida";
+            }
+
+            @Override
+            public String getDepartamento() {
+                return "Comercial";
+            }
+
+            @Override
+            public Long getDuracao() {
+                return 2l;
+            }
+        };
+        return pessoa;
     }
 }

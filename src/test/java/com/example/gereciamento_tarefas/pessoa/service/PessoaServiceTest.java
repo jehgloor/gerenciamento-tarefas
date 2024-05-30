@@ -160,5 +160,4 @@ public class PessoaServiceTest {
 
         verify(pessoaRepository).findMediaHorasGastasPorTarefa(nome, dataInicio, dataFim);
     }
-
 }

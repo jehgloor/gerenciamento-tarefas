@@ -1,7 +1,6 @@
 package com.example.gereciamento_tarefas.pessoa.controller;
 
 import com.example.gereciamento_tarefas.pessoa.dto.BuscaPessoaPorNomeEPeriodoRequest;
-import com.example.gereciamento_tarefas.pessoa.dto.PessoaDepartamentoInterface;
 import com.example.gereciamento_tarefas.pessoa.repository.PessoaRepository;
 import com.example.gereciamento_tarefas.pessoa.service.PessoaService;
 import org.junit.jupiter.api.Test;
@@ -19,8 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 import static com.example.gereciamento_tarefas.helper.TestsHelper.convertObjectToJsonBytes;
-import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoaRequest;
-import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.umaPessoaResponse;
+import static com.example.gereciamento_tarefas.pessoa.helper.PessoaHelper.*;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
@@ -134,25 +132,5 @@ public class PessoaControllerTest {
                 .andExpect(content().string("50.0")); // Verifica se a resposta contém o valor esperado
 
         verify(pessoaService).mediaGasto(any(BuscaPessoaPorNomeEPeriodoRequest.class));
-    }
-
-    private PessoaDepartamentoInterface umaPessoaDepartamentoInterface() {
-        var pessoa = new PessoaDepartamentoInterface() {
-            @Override
-            public String getNome() {
-                return "Maria Aperecida";
-            }
-
-            @Override
-            public String getDepartamento() {
-                return "Comercial";
-            }
-
-            @Override
-            public Long getDuracao() {
-                return 2l;
-            }
-        };
-        return pessoa;
     }
 }
